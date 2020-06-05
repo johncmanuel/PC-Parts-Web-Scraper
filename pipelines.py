@@ -34,18 +34,3 @@ class PerCategoryJsonExportPipeline:
         exporter = self._exporter_for_item(item)
         exporter.export_item(item)
         return item
-
-
-class TestPipeline:
-    """ Pipeline for use in shell for debugging problems """
-
-    def open_spider(self, spider):
-        self.file = open('test.json', 'w')
-
-    def close_spider(self, spider):
-        self.file.close()
-
-    def process_item(self, item, spider):
-        line = json.dumps(dict(item)) + "\n"
-        self.file.write(line)
-        return item

@@ -75,7 +75,6 @@ DOWNLOADER_MIDDLEWARES = {
 
 ITEM_PIPELINES = {
     'pcparts.pipelines.PerCategoryJsonExportPipeline': 300,
-    #'pcparts.pipelines.TestPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
