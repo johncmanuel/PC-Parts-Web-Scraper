@@ -26,7 +26,6 @@ class AmazonSpider(scrapy.Spider):
 
     def parse(self, response):
         """ Gather scraped data recursively. """
-
         product_box = response.xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "sg-col-20-of-28", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "sg-col-inner", " " ))]')
 
         """ Loads JSON object and extract its value as dict with the given key. """
