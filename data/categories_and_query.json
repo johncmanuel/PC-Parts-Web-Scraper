@@ -1,0 +1,10 @@
+{
+  "amazon_categories_and_queries" : {
+   "GPU": "graphics+cards",
+   "CPU": "processors",
+   "RAM": "ram",
+   "MOTHERBOARD": "motherboard",
+   "PSU": "power+supply",
+   "SSD": "solid+state+drive",
+   "CASE": "computer+case" }
+}
