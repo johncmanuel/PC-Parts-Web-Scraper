@@ -4,7 +4,7 @@ from scrapy.exporters import JsonLinesItemExporter
 from scrapy.exceptions import DropItem
 
 
-class PerCategoryCsvExportPipeline:
+class PerCategoryJsonExportPipeline:
     """ Creates a .json file for each category and its respective data. """
 
     @classmethod
@@ -34,25 +34,6 @@ class PerCategoryCsvExportPipeline:
         exporter = self._exporter_for_item(item)
         exporter.export_item(item)
         return item
-
-
-class DropNullValuesPipeline:
-
-    def __init__(self):
-        self.original_item = dict()
-
-    def process_item(self, item, spider):
-        if item['product_price'] or item['product_name'] == None:
-            del item
-        else:
-            return item
-        """
-        for price, name in zip(item['product_price'].values(), item['product_name'].values()):
-            if item[price] or item[name] == None:
-                del item
-                #raise DropItem('Null values detected in %s' % item)
-            else:
-                return item """
 
 
 class TestPipeline:

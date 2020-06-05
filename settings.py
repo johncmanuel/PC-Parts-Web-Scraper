@@ -74,8 +74,7 @@ DOWNLOADER_MIDDLEWARES = {
 #}
 
 ITEM_PIPELINES = {
-    'pcparts.pipelines.PerCategoryCsvExportPipeline': 300,
-    #'pcparts.pipelines.DropNullValuesPipeline': 400,
+    'pcparts.pipelines.PerCategoryJsonExportPipeline': 300,
     #'pcparts.pipelines.TestPipeline': 300,
 }
 
