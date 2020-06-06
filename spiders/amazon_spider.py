@@ -47,8 +47,6 @@ class AmazonSpider(scrapy.Spider):
                 item['product_price'] = price
                 if stars:
                     item['product_stars'] = stars[0:3]
-                else:
-                    item['product_stars'] = 'N/A'
                 item['product_link'] = 'amazon.com' + link
                 yield item
             pass
