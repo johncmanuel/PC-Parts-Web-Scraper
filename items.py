@@ -10,4 +10,5 @@ class PcpartsItem(scrapy.Item):
     product_price = scrapy.Field()
     product_category = scrapy.Field()
     product_stars = scrapy.Field()
+    product_link = scrapy.Field()
     pass

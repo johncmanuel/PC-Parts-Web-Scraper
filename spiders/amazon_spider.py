@@ -37,6 +37,7 @@ class AmazonSpider(scrapy.Spider):
         for box in product_box:
             item = PcpartsItem()
             name = box.xpath('.//span[contains(concat( " ", @class, " " ), concat( " ", "a-size-medium", " " ))]/text()').get()
+            link = box.xpath('.//a[contains(concat( " ", @class, " " ), concat( " ", "a-link-normal", " " ))][contains(concat( " ", @class, " " ), concat( " ", "a-text-normal", " " ))]/@href').get()
             price = box.xpath('.//span[contains(concat( " ", @class, " " ), concat( " ", "a-offscreen", " " ))]/text()').get()
             stars = box.xpath('.//span/@aria-label').get()
             """ Check if both the price tag and name are available. If so, parse data into the item object. """
@@ -48,6 +49,7 @@ class AmazonSpider(scrapy.Spider):
                     item['product_stars'] = stars[0:3]
                 else:
                     item['product_stars'] = 'N/A'
+                item['product_link'] = 'amazon.com' + link
                 yield item
             pass
 
