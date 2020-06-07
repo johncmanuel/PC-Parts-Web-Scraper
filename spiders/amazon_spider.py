@@ -18,20 +18,23 @@ class AmazonSpider(scrapy.Spider):
 
     name = 'amazon'
 
-    """ Loads JSON object containing the urls and extracts a value as a list of urls
-    from a given key. """
-    with open('data/urls.json') as f:
-        spider_urls = json.loads(f.read())
-        start_urls = spider_urls['amazon_urls']
+    def __init__(self, *args, **kwargs):
+        super(AmazonSpider, self).__init__(*args, **kwargs)
+        """
+        Loads JSON object containing the urls and its categories and queries, and extracts data
+        into two variables.
+        1. start_urls is a list that contains all the urls related to the given keyword.
+        2. categories_and_queries contains keywords used for organizing the scraped data in pipelines.
+        """
+        with open('data/websites.json') as f:
+            data = json.loads(f.read())
+            self.start_urls = data['amazon']['amazon_urls']
+            self.categories_and_queries = data['amazon']['amazon_categories_and_queries']
 
     def parse(self, response):
         """ Gather scraped data recursively. """
-        product_box = response.xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "sg-col-20-of-28", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "sg-col-inner", " " ))]')
 
-        """ Loads JSON object and extract its value as dict with the given key. """
-        with open('data/categories_and_query.json') as b:
-            spider_categories_queries = json.loads(b.read())
-            categories_and_queries = spider_categories_queries['amazon_categories_and_queries']
+        product_box = response.xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "sg-col-20-of-28", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "sg-col-inner", " " ))]')
 
         """ Check each box in each product and gathers the name, price tag, and ratings data. """
         for box in product_box:
@@ -40,9 +43,9 @@ class AmazonSpider(scrapy.Spider):
             link = box.xpath('.//a[contains(concat( " ", @class, " " ), concat( " ", "a-link-normal", " " ))][contains(concat( " ", @class, " " ), concat( " ", "a-text-normal", " " ))]/@href').get()
             price = box.xpath('.//span[contains(concat( " ", @class, " " ), concat( " ", "a-offscreen", " " ))]/text()').get()
             stars = box.xpath('.//span/@aria-label').get()
-            """ Check if both the price tag and name are available. If so, parse data into the item object. """
+            """ Check if both the price tag and name are available. If so, parse its data into the item object. """
             if price and name:
-                item['product_category'] = next(category for category, query in categories_and_queries.items() if query in response.url)
+                item['product_category'] = next(category for category, query in self.categories_and_queries.items() if query in response.url)
                 item['product_name'] = name
                 item['product_price'] = price
                 if stars:
