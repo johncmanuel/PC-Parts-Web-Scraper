@@ -14,14 +14,14 @@ from ..items import PcpartsItem
 
 
 class AmazonSpider(scrapy.Spider):
-    """ Spider for crawling Amazon URLs given in data/urls.json and parsing its scraped data. """
+    """ Spider for crawling Amazon URLs given in data/websites.json and parsing its scraped data. """
 
     name = 'amazon'
 
     def __init__(self, *args, **kwargs):
         super(AmazonSpider, self).__init__(*args, **kwargs)
         """
-        Loads JSON object containing the urls and its categories and queries, and extracts data
+        Loads JSON object containing the urls and its categories and queries, and extracts its data
         into two variables.
         1. start_urls is a list that contains all the urls related to the given keyword.
         2. categories_and_queries contains keywords used for organizing the scraped data in pipelines.
@@ -54,7 +54,7 @@ class AmazonSpider(scrapy.Spider):
                 yield item
             pass
 
-        """ Go to the next page. """
+        """ Go to the next page and call this method """
         next_page = response.css('.a-last a').css('::attr(href)').get()
         if next_page is not None:
             yield response.follow(next_page, callback=self.parse)
