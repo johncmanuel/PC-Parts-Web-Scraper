@@ -9,7 +9,6 @@ J.E Computers Inc.
 
 import scrapy
 import json
-import re
 from ..items import PcpartsItem
 
 
