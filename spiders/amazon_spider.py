@@ -48,8 +48,10 @@ class AmazonSpider(scrapy.Spider):
                 item['product_category'] = next(category for category, query in self.categories_and_queries.items() if query in response.url)
                 item['product_name'] = name
                 item['product_price'] = price
-                if stars:
+                if 'out of 5 stars' in stars:
                     item['product_stars'] = stars[0:3]
+                else:
+                    item['product_stars'] = 'N/A'
                 item['product_link'] = 'amazon.com' + link
                 yield item
             pass
