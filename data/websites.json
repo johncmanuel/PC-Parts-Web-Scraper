@@ -33,11 +33,11 @@
       "newegg_urls": [
           "https://www.newegg.com/Desktop-Graphics-Cards/SubCategory/ID-48/Page-1",
           "https://www.newegg.com/Processors-Desktops/SubCategory/ID-343/Page-1",
-          "https://www.newegg.com/Desktop-Memory/SubCategory/ID-147",
-          "https://www.newegg.com/AMD-Motherboards/SubCategory/ID-22",
-          "https://www.newegg.com/Computer-Cases/SubCategory/ID-7",
-          "https://www.newegg.com/Power-Supplies/SubCategory/ID-58",
-          "https://www.newegg.com/Internal-SSDs/SubCategory/ID-636?Tid=11693"
+          "https://www.newegg.com/Desktop-Memory/SubCategory/ID-147/Page-1",
+          "https://www.newegg.com/AMD-Motherboards/SubCategory/ID-22/Page-1",
+          "https://www.newegg.com/Computer-Cases/SubCategory/ID-7/Page-1",
+          "https://www.newegg.com/Power-Supplies/SubCategory/ID-58/Page-1",
+          "https://www.newegg.com/Internal-SSDs/SubCategory/ID-636/Page-1"
         ]
       }
 }
