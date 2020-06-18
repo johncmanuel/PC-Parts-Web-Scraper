@@ -1,0 +1,43 @@
+
+{
+  "amazon": {
+      "amazon_categories_and_queries": {
+       "GPU": "graphics+cards",
+       "CPU": "processors",
+       "RAM": "ram",
+       "MOTHERBOARD": "motherboard",
+       "PSU": "power+supply",
+       "SSD": "solid+state+drive",
+       "CASE": "computer+case"
+     },
+     "amazon_urls": [
+       "https://www.amazon.com/s?k=graphics+cards&rh=n%3A284822&ref=nb_sb_noss",
+       "https://www.amazon.com/s?k=processors&rh=n%3A229189&ref=nb_sb_noss",
+       "https://www.amazon.com/s?k=motherboard&rh=n%3A193870011&dc&ref=a9_sc_1",
+       "https://www.amazon.com/s?k=ram&rh=n%3A193870011&ref=nb_sb_noss",
+       "https://www.amazon.com/s?k=power+supply&rh=n%3A193870011&ref=nb_sb_noss",
+       "https://www.amazon.com/s?k=solid+state+drive&rh=n%3A1292116011&ref=nb_sb_noss",
+       "https://www.amazon.com/s?k=computer+case&rh=n%3A572238&ref=nb_sb_noss"
+      ]
+    },
+  "newegg": {
+      "newegg_categories_and_queries": {
+         "GPU": "Graphics-Cards",
+         "CPU": "Processors",
+         "RAM": "Memory",
+         "MOTHERBOARD": "Motherboards",
+         "PSU": "Power-Supplies",
+         "SSD": "SSDs",
+         "CASE": "Computer-Cases"
+      },
+      "newegg_urls": [
+          "https://www.newegg.com/Desktop-Graphics-Cards/SubCategory/ID-48/Page-",
+          "https://www.newegg.com/Processors-Desktops/SubCategory/ID-343/Page-",
+          "https://www.newegg.com/Desktop-Memory/SubCategory/ID-147/Page-",
+          "https://www.newegg.com/AMD-Motherboards/SubCategory/ID-22/Page-",
+          "https://www.newegg.com/Computer-Cases/SubCategory/ID-7/Page-",
+          "https://www.newegg.com/Power-Supplies/SubCategory/ID-58/Page-",
+          "https://www.newegg.com/Internal-SSDs/SubCategory/ID-636/Page-"
+        ]
+      }
+}

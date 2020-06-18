@@ -2,19 +2,22 @@
 
 from scrapy.exporters import JsonLinesItemExporter
 from scrapy.exceptions import DropItem
+from pathlib import Path
 
 
-class PerCategoryCsvExportPipeline:
+class PerCategoryJsonExportPipeline:
     """ Creates a .json file for each category and its respective data. """
 
     @classmethod
     def from_crawler(cls, crawler):
+        """ Get spider's name. """
         return cls(crawler.spider.name)
 
     def __init__(self, spider_name):
         self.spider_name = spider_name
 
     def open_spider(self, spider):
+        """ Create a dictionary for product_category in object Item. """
         self.category_to_exporter = dict()
 
     def close_spider(self, spider):
@@ -22,8 +25,16 @@ class PerCategoryCsvExportPipeline:
             exporter.finish_exporting()
 
     def _exporter_for_item(self, item):
+        """ Sort scraped data according to their spider and category. """
         category = item['product_category']
+        dir = 'data/output/{0}'.format(self.spider_name)
+
+        """ Create a directory if it doesn't exist. """
+        Path(dir).mkdir(parents=True, exist_ok=True)
+
+        """ Check if category exists in dictionary. """
         if category not in self.category_to_exporter:
+            """ Export scraped data into a json file with their spider name and category. """
             f = open('data/output/{0}/{1}_{2}.json'.format(self.spider_name, self.spider_name, category), 'wb')
             exporter = JsonLinesItemExporter(f)
             exporter.start_exporting()
@@ -33,38 +44,4 @@ class PerCategoryCsvExportPipeline:
     def process_item(self, item, spider):
         exporter = self._exporter_for_item(item)
         exporter.export_item(item)
-        return item
-
-
-class DropNullValuesPipeline:
-
-    def __init__(self):
-        self.original_item = dict()
-
-    def process_item(self, item, spider):
-        if item['product_price'] or item['product_name'] == None:
-            del item
-        else:
-            return item
-        """
-        for price, name in zip(item['product_price'].values(), item['product_name'].values()):
-            if item[price] or item[name] == None:
-                del item
-                #raise DropItem('Null values detected in %s' % item)
-            else:
-                return item """
-
-
-class TestPipeline:
-    """ Pipeline for use in shell for debugging problems """
-
-    def open_spider(self, spider):
-        self.file = open('test.json', 'w')
-
-    def close_spider(self, spider):
-        self.file.close()
-
-    def process_item(self, item, spider):
-        line = json.dumps(dict(item)) + "\n"
-        self.file.write(line)
         return item
