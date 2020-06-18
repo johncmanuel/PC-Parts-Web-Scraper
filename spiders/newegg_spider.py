@@ -53,17 +53,17 @@ class NeweggSpider(scrapy.Spider):
         """ Check each box in each product and gathers the name, price tag, and ratings data. """
         for box in product_box:
             item = PcpartsItem()
-            # TODO: Fix the xpaths
             name = box.xpath('.//a[contains(concat( " ", @class, " " ), concat( " ", "item-title", " " ))]/text()').get()
             link = box.xpath('.//a[contains(concat( " ", @class, " " ), concat( " ", "item-title", " " ))]/@href').get()
-            price = box.xpath('.//li[contains(concat( " ", @class, " " ), concat( " ", "price-current", " " ))]//text()[preceding-sibling::strong][normalize-space()!=""]').get()
-            stars = box.xpath('.//a[contains(concat( " ", @class, " " ), concat( " ", "item-rating", " " ))]//text()').get()
+            price_whole = box.xpath('.//li[contains(concat( " ", @class, " " ), concat( " ", "price-current", " " ))]//strong//text()').get()
+            price_cents = box.xpath('.//sup//text()').get()
+            stars = box.xpath('.//a[contains(concat( " ", @class, " " ), concat( " ", "item-rating", " " ))]/@title').get()
             """ Check if both the price tag and name are available. If so, parse its data into the item object. """
-            if price and name:
+            if price_whole and name:
                 item['product_category'] = next(category for category, query in self.categories_and_queries.items() if query in response.url)
                 item['product_name'] = name
-                item['product_price'] = price
-                item['product_stars'] = stars
+                item['product_price'] = '$' + price_whole + price_cents
+                item['product_stars'] = stars[-1] if stars else 'N/A'
                 item['product_link'] = link
                 yield item
             pass
