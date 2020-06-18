@@ -31,8 +31,8 @@ Once your virtual environment is activated and currently running, follow these s
 * cd to **(name_of_your_directory)**.
 * Inside **(name_of_your_directory)**, create two folders named **'pcparts'** where there's one parent and one child.
 * In the parent folder, create a file titled: **scrapy.cfg**.
-* Copy and paste the following text:
 
+* Copy and paste the following text:
 ```
 [settings]
 default = pcparts.settings
@@ -43,6 +43,7 @@ project = pcparts
 ```
 
 * cd to the child folder
+
 * Run the following commands:
 ```console
 git clone "https://github.com/johncmanuel/PC-Parts-Web-Scraper.git"
