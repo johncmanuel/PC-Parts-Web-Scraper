@@ -42,12 +42,21 @@ default = pcparts.settings
 project = pcparts
 ```
 
-* cd to the child folder
+* cd to the child folder.
 
 * Run the following commands:
 ```console
 git clone "https://github.com/johncmanuel/PC-Parts-Web-Scraper.git"
 pip install -r requirements.txt
+```
+
+Inside your **name_of_your_environment** folder, your project directory should look like this:
+```
+* (name_of_your_directory)
+  * pcparts
+    * pcparts
+      * ..rest of the project files
+    * scrapy.cfg
 ```
 
 * Run the following command to test if Scrapy works:
