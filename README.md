@@ -12,14 +12,14 @@ PRECAUTION: THIS IS ONLY TESTED FOR THE WINDOWS OS
 
 ### Create a Virtual Environment
 * Create a directory anywhere you wish.
-* Open command line
+* Open command line.
 * Run the following commands:
 ```console
 cd /your/directory/path
 py -m venv (name_of_your_environment)
 ```
 
-* After installing, activate your virtual environment
+* After installing, activate your virtual environment.
 ```console
 .(name_of_your_environment)/Scripts/activate.bat
 ```
@@ -36,7 +36,7 @@ git clone "https://github.com/johncmanuel/PC-Parts-Web-Scraper.git"
 pip install -r requirements.txt
 ```
 
-* After everything is installed, cd to /pcparts (it should contain a folder with the same name and a .cfg file)
+* After everything is installed, cd to /pcparts (it should contain a folder with the same name and a .cfg file).
 * Run the following command to test if Scrapy works:
 
 ```console
