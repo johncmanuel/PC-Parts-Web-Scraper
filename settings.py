@@ -64,8 +64,13 @@ DOWNLOADER_MIDDLEWARES = {
 #    'pcparts.pipelines.PcpartsPipeline': 300,
 #}
 
+
+# If you want to convert the data into json, comment the csv pipeline and remove
+# the comment from the json pipeline.
 ITEM_PIPELINES = {
-    'pcparts.pipelines.PerCategoryJsonExportPipeline': 300,
+    #'pcparts.pipelines.PerCategoryJsonExportPipeline': 300,
+    'pcparts.pipelines.PerCategoryCsvExportPipeline': 300,
+
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
